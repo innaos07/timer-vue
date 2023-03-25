@@ -2,8 +2,12 @@
   <section class="timer">
     <div class="container">
       <div class="timer__body">
-        <ul>
-
+        <ul class="timer__list">
+            <timer-item
+                v-for="item in timerList"
+                :key="item.id"
+                :item="item"
+            />
         </ul>
       </div>
     </div>
@@ -11,6 +15,22 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import TimerItem from "@/components/TimerItem.vue";
+const timerList = ref([
+    {
+        id: 1,
+        time: '0'
+    },
+    {
+        id: 2,
+        time: '0'
+    },
+    {
+        id: 3,
+        time: '0'
+    }
+])
 
 </script>
 
@@ -28,6 +48,13 @@
 
     .timer__body {
 
+    }
+
+    .timer__list {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 50px;
+        row-gap: 45px;
     }
 }
 
