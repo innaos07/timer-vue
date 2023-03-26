@@ -5,6 +5,7 @@ import * as path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/timer-vue/',
   plugins: [vue()],
   resolve: {
     alias: {

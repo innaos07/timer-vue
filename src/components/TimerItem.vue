@@ -54,12 +54,12 @@ const timerStopped = ref(null);
 
 const start = () => {
   if(isRunning) {
-    false
+    false;
   }
   timeStart.value = timeStart.value === null ?  new Date() : timeStart.value;
 
   if(timerStopped.value !== null ) {
-     timeStop.value += (new Date() - timerStopped.value) 
+     timeStop.value += (new Date() - timerStopped.value);
   }
 
   timeActive.value = setInterval(timerRunning, 100);
@@ -97,7 +97,7 @@ const setTimer =(time)=> {
 
   sec >= 1 && min == 0 && hour == 0 ? props.item.time = sec :
   sec >= 1 && min >= 1 && hour == 0 ? props.item.time = `${min}:${sec}`:
-  sec >= 1 && min >= 1 && hour >= 1 ? props.item.time = `${hour}:${min}:${sec}` : "0"
+  sec >= 1 && min >= 1 && hour >= 1 ? props.item.time = `${hour}:${min}:${sec}` : "0";
 }
 </script>
 
@@ -201,7 +201,6 @@ const setTimer =(time)=> {
     height: 20px;
     background-color: $color-gray;
     transition: background-color 0.5s ease-in;
-    
     &:hover,
     &:focus {
       outline: none;

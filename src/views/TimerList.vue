@@ -3,10 +3,16 @@
     <div class="container">
       <div class="timer__body">
         <ul class="timer__list">
-          <timer-item v-for="item in timerList" :key="item.id" :item="item" />
-
+          <timer-item 
+            v-for="item in timerList" 
+            :key="item.id" 
+            :item="item" 
+          />
           <li class="timer__column">
-            <button type="button" class="timer__btn-add btn" @click="addTimer"></button>
+            <button type="button" 
+              class="timer__btn-add btn" 
+              @click="addTimer">
+            </button>
           </li>
         </ul>
       </div>

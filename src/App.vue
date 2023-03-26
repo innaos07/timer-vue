@@ -1,7 +1,5 @@
 <script setup>
 import TimerList from "./views/TimerList.vue";
-
-
 </script>
 
 <template>
@@ -10,5 +8,4 @@ import TimerList from "./views/TimerList.vue";
 
 <style lang="scss">
 @import "@/assets/scss/main.scss";
-
 </style>
