@@ -61,7 +61,6 @@ const start = () => {
   if(timerStopped.value !== null ) {
      timeStop.value += (new Date() - timerStopped.value);
   }
-
   timeActive.value = setInterval(timerRunning, 100);
   isRunning.value = true;
 };
@@ -96,8 +95,8 @@ const setTimer =(time)=> {
   const sec = time.getUTCSeconds() < 10 ? "0" + time.getUTCSeconds() : time.getUTCSeconds();
 
   sec >= 1 && min == 0 && hour == 0 ? props.item.time = sec :
-  sec >= 1 && min >= 1 && hour == 0 ? props.item.time = `${min}:${sec}`:
-  sec >= 1 && min >= 1 && hour >= 1 ? props.item.time = `${hour}:${min}:${sec}` : "0";
+  sec >= 0 && min >= 1 && hour == 0 ? props.item.time = `${min}:${sec}`:
+  sec >= 0 && min >= 0 && hour >= 1 ? props.item.time = `${hour}:${min}:${sec}` : "0";
 }
 </script>
 
@@ -180,6 +179,7 @@ const setTimer =(time)=> {
       width: 3px;
       height: 20px;
       background-color: $color-gray;
+      transition: opacity, background-color 0.5s ease-in;
     }
 
     &::before {
@@ -200,7 +200,8 @@ const setTimer =(time)=> {
     width: 20px;
     height: 20px;
     background-color: $color-gray;
-    transition: background-color 0.5s ease-in;
+    transition: background-color, opacity 0.5s ease-in;
+
     &:hover,
     &:focus {
       outline: none;
