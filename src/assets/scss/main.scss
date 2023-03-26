@@ -1,12 +1,12 @@
 @import "variables";
 
 @font-face {
-    font-family: 'Gotham Pro';
-    src: url('@/assets/fonts/GothamPro.woff2') format('woff2'),
-        url('@/assets/fonts/GothamPro.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Gotham Pro";
+  src: url("@/assets/fonts/GothamPro.woff2") format("woff2"),
+    url("@/assets/fonts/GothamPro.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 *,
@@ -24,7 +24,7 @@ body {
   height: 100%;
   background: $color-main-background;
   color: $color-white;
-  font-family: 'Gotham Pro', 'Arial', sans-serif;
+  font-family: "Gotham Pro", "Arial", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 22px;
@@ -47,13 +47,12 @@ img {
 }
 
 .container {
-    
-  min-width: 875px;
+  width: 100%;
+  max-width: 875px;
   margin: 0 auto;
   padding: 0 50px;
-  border: 2px solid red;
 
-  @media (max-width: $xl-width) {
+  @media (max-width: $lg-width) {
     max-width: 560px;
     padding: 0 30px;
   }
@@ -62,4 +61,15 @@ img {
     width: 100%;
     padding: 0 49px;
   }
+}
+
+.btn {
+  padding: 0;
+  position: relative;
+  display: flex;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
 }

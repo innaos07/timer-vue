@@ -1,31 +1,36 @@
 <template>
   <li class="timer__item item-timer">
     <div class="item-timer__top">
-      <span class="item-timer__time"> {{ item.time }}</span>
+      <span class="item-timer__time"
+      :class="{'item-timer__time--active' : isRunning}"> {{ item.time }}</span>
     </div>
 
     <div class="item-timer__btns">
-  
       <button
-      v-if="isRunning"
-      type="button"
-        class="item-timer__btn item-timer__btn-pause"
-        :class="{'item-timer__btn-start-pause--active' : isRunning}"
+        v-if="isRunning"
+        type="button"
+        class="item-timer__btn item-timer__btn-pause btn"
+        :class="{'item-timer__btn-pause--active' : isRunning}"
         @click="stop"
-      > </button>
+        tabindex="0"
+      > 
+      </button>
       <button 
-       v-else
+        v-else
         type="button"
-        class="item-timer__btn item-timer__btn-start"
-        :class="{'item-timer__btn-start--active' : isRunning}"
+        class="item-timer__btn item-timer__btn-start btn"
         @click="start"
-      ></button>
+        tabindex="0"
+      >
+      </button>
       <button
         type="button"
-        class="item-timer__btn item-timer__btn-reset"
+        class="item-timer__btn item-timer__btn-reset btn"
         :class="{'item-timer__btn-reset--active' : isRunning}"
         @click="reset"
-      ></button>
+        tabindex="0"
+      >
+      </button>
     </div>
   </li>
 </template>
@@ -41,12 +46,10 @@ const props = defineProps({
 });
 
 const isRunning = ref(false);
-// const isStop = ref(false);
 const timeActive = ref(null);
 const timeStart = ref(null);
 const timeStop = ref(0);
 const timerStopped = ref(null);
-
 
 
 const start = () => {
@@ -64,6 +67,9 @@ const start = () => {
 };
 
 const stop = () => {
+  if(!isRunning) {
+    return;
+  }
   isRunning.value = false;
   clearInterval(timeActive.value);
   timerStopped.value = new Date();
@@ -97,13 +103,13 @@ const setTimer =(time)=> {
 
 <style lang="scss">
 @import "@/assets/scss/variables.scss";
+
 .item-timer {
   position: relative;
-  // flex: 1 1 33.333%;
   display: flex;
   flex-direction: column;
   width: 225px;
-  min-height: 120px;
+  height: 120px;
   background-color: #696969;
 
   .item-timer__top,
@@ -126,8 +132,11 @@ const setTimer =(time)=> {
     font-size: 22px;
     line-height: 21px;
     text-align: center;
+    color: $color-gray;
 
-    color: #ffffff;
+    &--active {
+      color: $color-white;
+    }
   }
 
   .item-timer__btns {
@@ -136,40 +145,31 @@ const setTimer =(time)=> {
     border-top: 1px solid $color-gray;
   }
 
-  .item-timer__btn {
-    padding: 0;
-    position: relative;
-    display: flex;
-    border: none;
-    border-radius: 0;
-    outline: none;
-    background-color: transparent;
-    cursor: pointer;
-  }
-
   .item-timer__btn-start {
     width: 17px;
     height: 20px;
-
     border-width: 10px;
     border-style: solid;
     border-color: transparent;
     border-left: 17px solid $color-gray;
-    transition: border-left 0.5s ease-in;
+    transition: opacity 0.5s ease-in;
 
-    &--active {
-      border-left: 17px solid $color-white;
+    &:hover,
+    &:focus {
+      outline: none;
+      opacity: 0.5;
     }
- 
   }
 
   .item-timer__btn-pause {
     position: relative;
     width: 10px;
     height: 20px;
-    &--active::before,
-    &--active::after {
-      background-color: $color-white;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      opacity: 0.5;
     }
 
     &::before,
@@ -180,10 +180,6 @@ const setTimer =(time)=> {
       width: 3px;
       height: 20px;
       background-color: $color-gray;
-
-      // &--active {
-      // background-color: $color-white;
-      // }
     }
 
     &::before {
@@ -194,8 +190,10 @@ const setTimer =(time)=> {
       right: 0;
     }
 
-   
-    
+    &--active::before,
+    &--active::after {
+      background-color: $color-white;
+    }
   }
 
   .item-timer__btn-reset {
@@ -203,6 +201,12 @@ const setTimer =(time)=> {
     height: 20px;
     background-color: $color-gray;
     transition: background-color 0.5s ease-in;
+    
+    &:hover,
+    &:focus {
+      outline: none;
+      opacity: 0.5;
+    }
 
     &--active {
       background-color: $color-white;
